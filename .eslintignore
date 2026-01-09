@@ -1,0 +1,7 @@
+# Fichiers à ignorer par ESLint
+node_modules/
+dist/
+coverage/
+*.js
+!eslint.config.mjs
+
