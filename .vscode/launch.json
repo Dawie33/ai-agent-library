@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug NestJS",
+            "name": "Debug NestJS Backend",
             "type": "node",
             "request": "launch",
             "runtimeExecutable": "npm",
@@ -10,12 +10,13 @@
                 "run",
                 "start:debug"
             ],
+            "cwd": "${workspaceFolder}/backend",
             "console": "integratedTerminal",
             "restart": true,
             "autoAttachChildProcesses": true,
             "skipFiles": [
                 "<node_internals>/**"
             ]
-        },
+        }
     ]
 }

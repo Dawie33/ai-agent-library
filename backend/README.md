@@ -83,13 +83,13 @@ OPENAI_API_KEY=sk-...
 PORT=3000
 ```
 
-**Important** : L'agent **CodeHelper** utilise l'API OpenAI et nécessite une clé API valide.
+**Important** : L'agent **CodeReview** utilise l'API OpenAI et nécessite une clé API valide.
 
 ---
 
 ## 🤖 Agents disponibles
 
-### 1. CodeHelper (Avec OpenAI GPT-4)
+### 1. CodeReview (Avec OpenAI GPT-4)
 
 Agent expert pour analyser du code et fournir des recommandations détaillées avec une approche pédagogique.
 
@@ -99,7 +99,7 @@ Agent expert pour analyser du code et fournir des recommandations détaillées a
 
 **Endpoint** :
 ```bash
-POST /api/agents/CodeHelper/execute
+POST /api/agents/CodeReview/execute
 ```
 
 **Exemple de requête** :
@@ -178,7 +178,7 @@ GET /api/agents/tags/:tag
 ### Exemple d'utilisation
 
 ```javascript
-const response = await fetch('http://localhost:3000/api/agents/CodeHelper/execute', {
+const response = await fetch('http://localhost:3000/api/agents/CodeReview/execute', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
@@ -219,7 +219,7 @@ Le frontend Vue.js (dans `../frontend/`) est configuré avec un proxy vers ce ba
 
 ```javascript
 // Depuis le frontend, appel direct via proxy
-fetch('/api/agents/CodeHelper/execute', {
+fetch('/api/agents/CodeReview/execute', {
   method: 'POST',
   body: JSON.stringify({ prompt: code })
 })
