@@ -1,16 +1,16 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
-import { IAgent } from '../interfaces/agent.interface';
+import { Injectable, OnModuleInit } from '@nestjs/common'
+import { IAgent } from '../interfaces/agent.interface'
 
 @Injectable()
 export class AgentRegistryService implements OnModuleInit {
-  private agents: Map<string, IAgent> = new Map();
+  private agents: Map<string, IAgent> = new Map()
 
   /**
    * Méthode appelée lors de l'initialisation du module
    * Elle est utilisée pour logger un message d'initialisation du service AgentRegistry
    */
   onModuleInit() {
-    console.log('AgentRegistry initialized');
+    console.log('AgentRegistry initialized')
   }
 
   /**
@@ -20,10 +20,10 @@ export class AgentRegistryService implements OnModuleInit {
    */
   register(agent: IAgent): void {
     if (this.agents.has(agent.config.name)) {
-      throw new Error(`Agent ${agent.config.name} is already registered`);
+      throw new Error(`Agent ${agent.config.name} is already registered`)
     }
-    this.agents.set(agent.config.name, agent);
-    console.log(`Agent registered: ${agent.config.name}`);
+    this.agents.set(agent.config.name, agent)
+    console.log(`Agent registered: ${agent.config.name}`)
   }
 
   /**
@@ -32,7 +32,7 @@ export class AgentRegistryService implements OnModuleInit {
    * @returns {IAgent | undefined} - L'agent correspondant ou undefined si non trouvé
    */
   getAgent(name: string): IAgent | undefined {
-    return this.agents.get(name);
+    return this.agents.get(name)
   }
 
   /**
@@ -40,7 +40,7 @@ export class AgentRegistryService implements OnModuleInit {
    * @returns tableau des agents enregistrés
    */
   getAllAgents(): IAgent[] {
-    return Array.from(this.agents.values());
+    return Array.from(this.agents.values())
   }
 
   /**
@@ -49,8 +49,6 @@ export class AgentRegistryService implements OnModuleInit {
    * @returns {IAgent[]} - La liste des agents correspondants
    */
   getAgentsByTag(tag: string): IAgent[] {
-    return this.getAllAgents().filter((agent) =>
-      agent.config.tags?.includes(tag),
-    );
+    return this.getAllAgents().filter(agent => agent.config.tags?.includes(tag))
   }
 }

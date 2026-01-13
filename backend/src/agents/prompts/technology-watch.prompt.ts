@@ -259,4 +259,4 @@ Structure ton rapport EXACTEMENT comme ceci :
 - "Meilleures pratiques NestJS 2025"
 - "Server Components React : migration et bonnes pratiques"
 - "Outils de testing E2E : Playwright vs Cypress en 2025"
-`;
+`

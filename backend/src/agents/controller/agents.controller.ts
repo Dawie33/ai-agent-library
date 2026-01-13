@@ -1,13 +1,13 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
-import { AgentRegistryService } from '../../agents/services/agent-registry.service';
-import { AgentExecutorService } from '../../agents/services/agent-executor.service';
-import { ExecuteAgentDto } from '../interfaces/agent.interface';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common'
+import { AgentRegistryService } from '../../agents/services/agent-registry.service'
+import { AgentExecutorService } from '../../agents/services/agent-executor.service'
+import { ExecuteAgentDto } from '../interfaces/agent.interface'
 
 @Controller('api/agents')
 export class AgentsController {
   constructor(
     private readonly agentRegistry: AgentRegistryService,
-    private readonly agentExecutor: AgentExecutorService,
+    private readonly agentExecutor: AgentExecutorService
   ) {}
 
   @Get()
@@ -16,13 +16,13 @@ export class AgentsController {
    */
   listAgents() {
     return {
-      agents: this.agentRegistry.getAllAgents().map((agent) => ({
+      agents: this.agentRegistry.getAllAgents().map(agent => ({
         name: agent.config.name,
         description: agent.config.description,
         version: agent.config.version,
         tags: agent.config.tags,
       })),
-    };
+    }
   }
 
   @Get(':name')
@@ -33,13 +33,13 @@ export class AgentsController {
    * @returns {IAgent | { error: string }} - L'agent correspondant ou une erreur si non trouvé
    */
   getAgent(@Param('name') name: string) {
-    const agent = this.agentRegistry.getAgent(name);
+    const agent = this.agentRegistry.getAgent(name)
     if (!agent) {
-      return { error: `Agent ${name} not found` };
+      return { error: `Agent ${name} not found` }
     }
     return {
       config: agent.config,
-    };
+    }
   }
 
   @Post(':name/execute')
@@ -51,25 +51,20 @@ export class AgentsController {
    * @returns {Promise<{ success: boolean, agent: string, result: AgentOutput }>}
    * @throws {Error} Si l'exécution de l'agent échoue
    */
-  async executeAgent(
-    @Param('name') name: string,
-    @Body() dto: ExecuteAgentDto,
-  ) {
+  async executeAgent(@Param('name') name: string, @Body() dto: ExecuteAgentDto) {
     try {
       const result = await this.agentExecutor.executeAgent(name, {
         prompt: dto.prompt,
         context: dto.context,
         options: dto.options,
-      });
+      })
       return {
         success: true,
         agent: name,
         result,
-      };
+      }
     } catch (error) {
-      throw new Error(
-        `Failed to execute agent ${name}: ${error instanceof Error ? error.message : String(error)}`,
-      );
+      throw new Error(`Failed to execute agent ${name}: ${error instanceof Error ? error.message : String(error)}`)
     }
   }
 
@@ -87,10 +82,10 @@ export class AgentsController {
   getAgentsByTag(@Param('tag') tag: string) {
     return {
       tag,
-      agents: this.agentRegistry.getAgentsByTag(tag).map((agent) => ({
+      agents: this.agentRegistry.getAgentsByTag(tag).map(agent => ({
         name: agent.config.name,
         description: agent.config.description,
       })),
-    };
+    }
   }
 }

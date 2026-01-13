@@ -196,4 +196,4 @@ Classe les corrections à faire selon cette priorité :
 - Limite-toi à 3-5 problèmes principaux (pas une liste de 20 items)
 - Concentre-toi sur ce qui aura le PLUS d'impact sur l'apprentissage
 - Utilise des emojis pour rendre la lecture plus agréable
-- Ajoute des commentaires explicatifs dans le code corrigé`;
+- Ajoute des commentaires explicatifs dans le code corrigé`

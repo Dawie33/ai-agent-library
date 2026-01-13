@@ -7,7 +7,7 @@
  * @returns {string} 'typescript', 'javascript', ou 'unknown'
  */
 export function detectLanguage(code: string): string {
-  if (!code || code.trim().length === 0) return 'unknown';
+  if (!code || code.trim().length === 0) return 'unknown'
 
   // TypeScript: recherche d'annotations de type, interfaces, types, generics
   if (
@@ -18,7 +18,7 @@ export function detectLanguage(code: string): string {
     /as\s+(string|number|boolean|const)/i.test(code) || // as string
     /enum\s+\w+/i.test(code) // enum Foo
   ) {
-    return 'typescript';
+    return 'typescript'
   }
 
   // JavaScript: vérifie la présence de syntaxe JS valide
@@ -31,8 +31,8 @@ export function detectLanguage(code: string): string {
     /export\s+(default|const|function|class)/.test(code) ||
     /class\s+\w+/.test(code)
   ) {
-    return 'javascript';
+    return 'javascript'
   }
 
-  return 'unknown';
+  return 'unknown'
 }
