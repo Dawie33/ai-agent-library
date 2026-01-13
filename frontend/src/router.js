@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Dashboard from './components/Dashboard.vue'
-import ExecuteAgent from './components/ExecuteAgent.vue'
+import Dashboard from './pages/Dashboard.vue'
+import ExecuteAgent from './pages/ExecuteAgent.vue'
 
 /**
  * Configuration du router Vue Router
@@ -23,7 +23,7 @@ const routes = [
     path: '/agent/:name',
     name: 'ExecuteAgent',
     component: ExecuteAgent,
-    props: true, 
+    props: true,
     meta: {
       title: 'Exécution Agent',
     },
